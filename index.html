@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disc Sales System - Mfumo wa Usimamizi wa Mauzo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f43f5e;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 3rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .logo-text {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin: 0 auto 1rem;
+        }
+
+        .btn-custom {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border: none;
+            border-radius: 12px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn-outline-custom:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            color: white;
+        }
+
+        .demo-accounts {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .demo-account-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .glass-card {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
+            }
+            
+            .logo-text {
+                font-size: 2.5rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero-section">
+            <div class="glass-card w-100">
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <i class="fas fa-compact-disc"></i>
+                    </div>
+                    <div class="logo-text">DISC SALES</div>
+                    <div class="logo-subtitle">Mfumo wa Usimamizi wa Mauzo ya Cutting Discs</div>
+                </div>
+
+                <div class="text-center mb-5">
+                    <p class="lead mb-4" style="font-size: 1.2rem;">
+                        Mfumo wa kisasa wa kusimamia mauzo, bidhaa, na watumiaji kwa urahisi na usalama.
+                    </p>
+                    
+                    <div class="mb-4">
+                        <a href="login.html" class="btn-custom">
+                            <i class="fas fa-sign-in-alt"></i> Ingia kwenye Mfumo
+                        </a>
+                        <a href="register.html" class="btn-outline-custom">
+                            <i class="fas fa-user-plus"></i> Jisajili
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-cash-register"></i>
+                        </div>
+                        <h4>POS System</h4>
+                        <p>Mfumo wa mauzo wa kisasa na risiti</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <h4>Usimamizi wa Bidhaa</h4>
+                        <p>Dhibiti stock na bei za bidhaa zako</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Ripoti za Mauzo</h4>
+                        <p>Takwimu za mauzo na uchambuzi</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h4>Usimamizi wa Watumiaji</h4>
+                        <p>Dhibiti wahusika na ruhusa</p>
+                    </div>
+                </div>
+
+                <!-- Demo Accounts -->
+                <div class="demo-accounts">
+                    <h4 class="text-center mb-3">
+                        <i class="fas fa-key me-2"></i>Akaunti za Demo
+                    </h4>
+                    <div class="demo-account-item">
+                        <div>
+                            <strong>Super Administrator</strong>
+                            <div class="small">Msimamizi Mkuu wa Mfumo</div>
+                        </div>
+                        <div class="text-end">
+                            <div><strong>Email:</strong> admin@discsales.com</div>
+                            <div><strong>Password:</strong> admin123</div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-account-item">
+                        <div>
+                            <strong>Cashier</strong>
+                            <div class="small">Keshia wa Kawaida</div>
+                        </div>
+                        <div class="text-end">
+                            <div><strong>Email:</strong> cashier@discsales.com</div>
+                            <div><strong>Password:</strong> cashier123</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <small class="text-warning">
+                            <i class="fas fa-exclamation-triangle me-1"></i>
+                            Tumia akaunti hizi za demo kujaribu mfumo
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="row text-center mt-5">
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="h3 text-warning">100%</div>
+                        <div class="small">Free & Open Source</div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="h3 text-success">24/7</div>
+                        <div class="small">Inafanya Kazi</div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="h3 text-info">Easy</div>
+                        <div class="small">Kutumia</div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="h3 text-danger">Secure</div>
+                        <div class="small">Na Salama</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize demo accounts on first visit
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Disc Sales System - Landing Page');
+            
+            // Create demo accounts if they don't exist
+            if (!localStorage.getItem('users')) {
+                const demoUsers = [
+                    {
+                        id: 1,
+                        full_name: 'Super Administrator',
+                        email: 'admin@discsales.com',
+                        password: 'admin123',
+                        role: 'superadmin',
+                        status: 'active',
+                        bio: 'Msimamizi mkuu wa mfumo wa Disc Sales',
+                        profile_picture: '',
+                        created_at: new Date().toISOString().split('T')[0],
+                        last_login: null
+                    },
+                    {
+                        id: 2,
+                        full_name: 'Cashier User',
+                        email: 'cashier@discsales.com',
+                        password: 'cashier123',
+                        role: 'cashier',
+                        status: 'active',
+                        bio: 'Keshia wa mfumo wa Disc Sales',
+                        profile_picture: '',
+                        created_at: new Date().toISOString().split('T')[0],
+                        last_login: null
+                    }
+                ];
+                localStorage.setItem('users', JSON.stringify(demoUsers));
+                console.log('✅ Demo accounts created!');
+            }
+        });
+    </script>
+</body>
+</html>

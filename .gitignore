@@ -1,0 +1,12 @@
+# Hakikisha usiweka data za watumiaji kwenye GitHub
+*.log
+.DS_Store
+Thumbs.db
+node_modules/
+.env
+*.tmp
+*.temp
+
+# Local storage files (optional)
+# *.localstorage
+# *.localstorage-journal

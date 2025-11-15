@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Super Admin Fix</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f0f0f0; }
+        button { padding: 15px; margin: 10px; background: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; }
+        .success { background: #28a745; }
+        .danger { background: #dc3545; }
+    </style>
+</head>
+<body>
+    <h1>🛡️ Super Admin Fix</h1>
+    
+    <button onclick="createSuperAdmin()">Create Super Admin Account</button>
+    <button onclick="loginAsSuperAdmin()" class="success">Login as Super Admin Now</button>
+    <button onclick="checkSystem()">Check System Status</button>
+    <button onclick="clearAndReset()" class="danger">Clear & Reset Everything</button>
+    
+    <div id="status" style="margin-top: 20px; padding: 15px; background: white; border-radius: 8px;"></div>
+
+    <script>
+        function createSuperAdmin() {
+            const superAdmin = {
+                id: 1,
+                full_name: 'Super Administrator',
+                email: 'admin@discsales.com',
+                password: 'admin123',
+                role: 'superadmin',
+                status: 'active',
+                bio: 'Msimamizi Mkuu wa Mfumo',
+                created_at: new Date().toISOString().split('T')[0],
+                last_login: null
+            };
+            
+            localStorage.setItem('users', JSON.stringify([superAdmin]));
+            localStorage.setItem('superAdminCreated', 'true');
+            
+            document.getElementById('status').innerHTML = `
+                <h3>✅ Super Admin Created!</h3>
+                <p><strong>Email:</strong> admin@discsales.com</p>
+                <p><strong>Password:</strong> admin123</p>
+                <p><strong>Role:</strong> Super Admin</p>
+            `;
+        }
+        
+        function loginAsSuperAdmin() {
+            localStorage.setItem('currentUser', JSON.stringify({
+                id: 1,
+                full_name: 'Super Administrator',
+                email: 'admin@discsales.com',
+                role: 'superadmin',
+                status: 'active'
+            }));
+            localStorage.setItem('token', 'super-admin-fixed');
+            localStorage.setItem('lastLogin', new Date().toString());
+            
+            document.getElementById('status').innerHTML = '<p>✅ Logged in as Super Admin! Redirecting...</p>';
+            
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        }
+        
+        function checkSystem() {
+            const currentUser = localStorage.getItem('currentUser');
+            const users = localStorage.getItem('users');
+            const token = localStorage.getItem('token');
+            
+            let html = '<h3>🔍 System Status</h3>';
+            html += `<p><strong>Current User:</strong> ${currentUser ? '✅ Exists' : '❌ Missing'}</p>`;
+            html += `<p><strong>Users Data:</strong> ${users ? '✅ Exists' : '❌ Missing'}</p>`;
+            html += `<p><strong>Token:</strong> ${token ? '✅ Exists' : '❌ Missing'}</p>`;
+            
+            if (users) {
+                try {
+                    const usersArray = JSON.parse(users);
+                    html += `<p><strong>Total Users:</strong> ${usersArray.length}</p>`;
+                    usersArray.forEach(user => {
+                        html += `<p>• ${user.email} (${user.role}) - ${user.status}</p>`;
+                    });
+                } catch (e) {
+                    html += `<p>❌ Error reading users: ${e.message}</p>`;
+                }
+            }
+            
+            document.getElementById('status').innerHTML = html;
+        }
+        
+        function clearAndReset() {
+            localStorage.clear();
+            document.getElementById('status').innerHTML = '<p>🧹 Everything cleared! System reset.</p>';
+        }
+        
+        // Auto-check on load
+        checkSystem();
+    </script>
+</body>
+</html>
